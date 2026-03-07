@@ -25,6 +25,18 @@ public class BirthChart {
         put(Planets.SATURN, Arrays.asList(Rashis.getRashiFromNumber(10), Rashis.getRashiFromNumber(11)));
     }};
 
+    List<Planets> maleficPlanets = Arrays.asList(
+            Planets.SUN, Planets.SATURN, Planets.MARS
+    );
+
+    List<Planets> beneficPlanets = Arrays.asList(
+            Planets.JUPITER, Planets.VENUS
+    );
+
+    List<Planets> neutralPlanets = Arrays.asList(
+            Planets.MOON
+    );
+
     public void getBirthChartDetails() {
         initializeLagna();
         initializeRashisForEachHouse();
@@ -32,6 +44,7 @@ public class BirthChart {
         initializeHouseWisePlanets();
         initializePlanetWiseRashis();
         initializeOwnHousePlanets();
+        initializeMaleficsAndBenefics();
     }
 
     private void initializeLagna() {
@@ -116,6 +129,58 @@ public class BirthChart {
         }
     }
 
+    private void initializeMaleficsAndBenefics() {
+        Houses houseOfRahu = planetHouses.get(Planets.RAHU);
+        Houses houseOfKetu = planetHouses.get(Planets.KETU);
+        Houses houseOfMercury = planetHouses.get(Planets.MERCURY);
+
+        boolean isBeneficWithRahu = false;
+        boolean isBeneficWithKetu = false;
+        boolean isBeneficWithMercury = false;
+
+        boolean isMaleficWithRahu = false;
+        boolean isMaleficWithKetu = false;
+        boolean isMaleficWithMercury = false;
+
+        for(Planets benefic : beneficPlanets) {
+            isBeneficWithRahu = houseWisePlanets.get(houseOfRahu).contains(benefic);
+            isBeneficWithKetu = houseWisePlanets.get(houseOfKetu).contains(benefic);
+            isBeneficWithMercury = houseWisePlanets.get(houseOfMercury).contains(benefic);
+        }
+
+        for(Planets malefic : maleficPlanets) {
+            isMaleficWithRahu = houseWisePlanets.get(houseOfRahu).contains(malefic);
+            isMaleficWithKetu = houseWisePlanets.get(houseOfKetu).contains(malefic);
+            isMaleficWithMercury = houseWisePlanets.get(houseOfMercury).contains(malefic);
+        }
+
+        if (isBeneficWithRahu && isMaleficWithRahu) {
+            neutralPlanets.add(Planets.RAHU);
+        } else if (isBeneficWithRahu) {
+            beneficPlanets.add(Planets.RAHU);
+        } else {
+            maleficPlanets.add(Planets.RAHU);
+        }
+
+        if (isBeneficWithKetu && isMaleficWithKetu) {
+            neutralPlanets.add(Planets.KETU);
+        } else if (isBeneficWithKetu) {
+            beneficPlanets.add(Planets.KETU);
+        } else {
+            maleficPlanets.add(Planets.KETU);
+        }
+
+        if (isBeneficWithMercury && isMaleficWithMercury) {
+            neutralPlanets.add(Planets.MERCURY);
+        } else if (isBeneficWithMercury) {
+            beneficPlanets.add(Planets.MERCURY);
+        } else if (isMaleficWithMercury) {
+            maleficPlanets.add(Planets.MERCURY);
+        } else {
+            neutralPlanets.add(Planets.MERCURY);
+        }
+    }
+
     public void printHouseWiseRashis() {
         System.out.println("==================== House wise Rashis as follows: ");
         for (Map.Entry<Houses, Rashis> entry : houseWiseRashis.entrySet()) {
@@ -161,4 +226,38 @@ public class BirthChart {
         System.out.println();
     }
 
+    public Rashis getLagna() {
+        return Lagna;
+    }
+
+    public Map<Houses, Rashis> getHouseWiseRashis() {
+        return houseWiseRashis;
+    }
+
+    public Map<Planets, Houses> getPlanetHouses() {
+        return planetHouses;
+    }
+
+    public Map<Houses, List<Planets>> getHouseWisePlanets() {
+        return houseWisePlanets;
+    }
+
+    public Map<Planets, Rashis> getPlanetWiseRashis() {
+        return planetWiseRashis;
+    }
+
+    public Map<Planets, Rashis> getOwnHousePlanets() {
+        return ownHousePlanets;
+    }
+
+    public Map<Planets, List<Rashis>> getRashiLords() {
+        return rashiLords;
+    }
+
+    public Houses getNthHouseFromGivenHouse(Houses start, int delta) {
+        int startNum = start.getHouseNumber();
+        int result = (((startNum + delta) - 1) % 12);
+        result = result == 0 ? 12 : result;
+        return Houses.getHouseByNumber(result);
+    }
 }

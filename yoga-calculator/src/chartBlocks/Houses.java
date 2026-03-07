@@ -21,8 +21,7 @@ public enum Houses {
 
     public static Houses getHouseByNumber(int num) {
         if (num < 1 || num > 12) {
-            System.out.println("Invalid number for a House");
-            return null;
+            throw new RuntimeException("Invalid number for a House. Number is: " + num);
         }
         switch (num) {
             case 1:
@@ -56,5 +55,9 @@ public enum Houses {
     @Override
     public String toString() {
         return String.valueOf(this.house);
+    }
+
+    public int getHouseNumber() {
+        return this.house;
     }
 }
