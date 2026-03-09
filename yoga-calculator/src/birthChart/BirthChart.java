@@ -25,16 +25,24 @@ public class BirthChart {
         put(Planets.SATURN, Arrays.asList(Rashis.getRashiFromNumber(10), Rashis.getRashiFromNumber(11)));
     }};
 
-    List<Planets> maleficPlanets = Arrays.asList(
+    List<Planets> maleficPlanets = new ArrayList<>(Arrays.asList(
+            Planets.SUN, Planets.SATURN, Planets.MARS
+    ));
+
+    List<Planets> beneficPlanets = new ArrayList<>(Arrays.asList(
+            Planets.JUPITER, Planets.VENUS
+    ));
+
+    List<Planets> neutralPlanets = new ArrayList<>(Arrays.asList(
+            Planets.MOON
+    ));
+
+    List<Planets> naturalMaleficPlanets = Arrays.asList(
             Planets.SUN, Planets.SATURN, Planets.MARS
     );
 
-    List<Planets> beneficPlanets = Arrays.asList(
-            Planets.JUPITER, Planets.VENUS
-    );
-
-    List<Planets> neutralPlanets = Arrays.asList(
-            Planets.MOON
+    List<Planets> naturalBeneficPlanets = Arrays.asList(
+            Planets.MERCURY, Planets.JUPITER, Planets.VENUS
     );
 
     public void getBirthChartDetails() {
@@ -259,5 +267,13 @@ public class BirthChart {
         int result = (((startNum + delta) - 1) % 12);
         result = result == 0 ? 12 : result;
         return Houses.getHouseByNumber(result);
+    }
+
+    public List<Planets> getNaturalMaleficPlanets() {
+        return naturalMaleficPlanets;
+    }
+
+    public List<Planets> getNaturalBeneficPlanets() {
+        return naturalBeneficPlanets;
     }
 }

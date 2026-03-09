@@ -11,10 +11,14 @@ public interface Yoga {
             new GajKesariYoga(),
             new SunaphaYoga(),
             new AnaphaYoga(),
-            new DhurdhuraYoga()
+            new DhurdhuraYoga(),
+            new AdhiYoga()
     );
 
-    List<Yoga> negativeYogas = Arrays.asList();
+    List<Yoga> negativeYogas = Arrays.asList(
+            new KemaDrumaYoga(),
+            new ChandraMangalaYoga()
+    );
 
     boolean isYogaPresent(BirthChart birthChartData);
     String getYogaName();

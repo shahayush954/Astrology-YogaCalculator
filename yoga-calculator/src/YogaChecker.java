@@ -24,6 +24,8 @@ public class YogaChecker {
             }
         }
 
+        System.out.println();
+        System.out.println();
         System.out.println("************************************************* NEGATIVE YOGAS *************************************************");
         for (Yoga yoga : Yoga.negativeYogas) {
             if (yoga.isYogaPresent(birthChart)) {
