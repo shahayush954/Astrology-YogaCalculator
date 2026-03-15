@@ -26,7 +26,7 @@ public class ChapaYoga extends AbstractYoga {
     }
 
     private boolean lordOfFirstInExaltation(BirthChart birthChartData) {
-        Planets lordOfFirst = getLordOfHouse(birthChartData, Houses.FIRST_HOUSE);
+        Planets lordOfFirst = birthChartData.getLordOfHouse(Houses.FIRST_HOUSE);
         if (lordOfFirst == null) return false;
         Rashis lordRashi = birthChartData.getPlanetWiseRashis().get(lordOfFirst);
         Rashis exaltationRashi = birthChartData.getExaltationRashi(lordOfFirst);
@@ -34,26 +34,16 @@ public class ChapaYoga extends AbstractYoga {
     }
 
     private boolean lordOfFourthInTenthHouse(BirthChart birthChartData) {
-        Planets lordOfFourth = getLordOfHouse(birthChartData, Houses.FOURTH_HOUSE);
+        Planets lordOfFourth = birthChartData.getLordOfHouse(Houses.FOURTH_HOUSE);
         if (lordOfFourth == null) return false;
         Houses houseOfLord = birthChartData.getPlanetHouses().get(lordOfFourth);
         return houseOfLord == Houses.TENTH_HOUSE;
     }
 
     private boolean lordOfTenthInFourthHouse(BirthChart birthChartData) {
-        Planets lordOfTenth = getLordOfHouse(birthChartData, Houses.TENTH_HOUSE);
+        Planets lordOfTenth = birthChartData.getLordOfHouse(Houses.TENTH_HOUSE);
         if (lordOfTenth == null) return false;
         Houses houseOfLord = birthChartData.getPlanetHouses().get(lordOfTenth);
         return houseOfLord == Houses.FOURTH_HOUSE;
-    }
-
-    private Planets getLordOfHouse(BirthChart birthChartData, Houses house) {
-        Rashis rashiInHouse = birthChartData.getHouseWiseRashis().get(house);
-        if (rashiInHouse == null) return null;
-        return birthChartData.getRashiLords().entrySet().stream()
-                .filter(e -> e.getValue() != null && e.getValue().contains(rashiInHouse))
-                .map(e -> e.getKey())
-                .findFirst()
-                .orElse(null);
     }
 }

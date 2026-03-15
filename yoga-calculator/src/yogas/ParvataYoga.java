@@ -3,7 +3,6 @@ package yogas;
 import birthChart.BirthChart;
 import chartBlocks.Houses;
 import chartBlocks.Planets;
-import chartBlocks.Rashis;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +28,8 @@ public class ParvataYoga extends AbstractYoga {
     }
 
     private boolean lordsOfFirstAndTwelfthInMutualKendras(BirthChart birthChartData) {
-        Planets lordOfFirst = getLordOfHouse(birthChartData, Houses.FIRST_HOUSE);
-        Planets lordOfTwelfth = getLordOfHouse(birthChartData, Houses.TWELVTH_HOUSE);
+        Planets lordOfFirst = birthChartData.getLordOfHouse(Houses.FIRST_HOUSE);
+        Planets lordOfTwelfth = birthChartData.getLordOfHouse(Houses.TWELVTH_HOUSE);
         if (lordOfFirst == null || lordOfTwelfth == null) {
             return false;
         }
@@ -40,17 +39,6 @@ public class ParvataYoga extends AbstractYoga {
             return false;
         }
         return areInMutualKendras(houseOfLord1, houseOfLord2, birthChartData);
-    }
-
-    /** Returns the single planet that lords the sign occupying the given house, or null if none. */
-    private Planets getLordOfHouse(BirthChart birthChartData, Houses house) {
-        Rashis rashiInHouse = birthChartData.getHouseWiseRashis().get(house);
-        if (rashiInHouse == null) return null;
-        return birthChartData.getRashiLords().entrySet().stream()
-                .filter(e -> e.getValue() != null && e.getValue().contains(rashiInHouse))
-                .map(e -> e.getKey())
-                .findFirst()
-                .orElse(null);
     }
 
     /** Mutual kendras: 1st-7th (opposite houses) or 4th-10th from each other. */

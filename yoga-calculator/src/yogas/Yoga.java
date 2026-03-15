@@ -31,7 +31,8 @@ public interface Yoga {
             new LakshmiYoga(),
             new GauriYoga(),
             new BharathiYoga(),
-            new ChapaYoga()
+            new ChapaYoga(),
+            new SreenathaYoga()
     );
 
     List<Yoga> negativeYogas = Arrays.asList(

@@ -354,4 +354,15 @@ public class BirthChart {
     public Rashis getExaltationRashi(Planets planet) {
         return planetWiseExaltationSigns.get(planet);
     }
+
+    /** Returns the single planet that lords the sign occupying the given house, or null if none. */
+    public Planets getLordOfHouse(Houses house) {
+        Rashis rashiInHouse = houseWiseRashis.get(house);
+        if (rashiInHouse == null) return null;
+        return rashiLords.entrySet().stream()
+                .filter(e -> e.getValue() != null && e.getValue().contains(rashiInHouse))
+                .map(e -> e.getKey())
+                .findFirst()
+                .orElse(null);
+    }
 }
