@@ -20,14 +20,26 @@ public interface Yoga {
             new ParvataYoga(),
             new VesiYoga(),
             new VasiYoga(),
-            new ObhayachariYoga()
+            new ObhayachariYoga(),
+            new HamsaYoga(),
+            new MalavyaYoga(),
+            new RuchakaYoga(),
+            new BhadraYoga(),
+            new BudhaAdityaYoga(),
+            new MahaBhagyaYoga(),
+            new PushkalaYoga(),
+            new LakshmiYoga(),
+            new GauriYoga(),
+            new BharathiYoga(),
+            new ChapaYoga()
     );
 
     List<Yoga> negativeYogas = Arrays.asList(
             new KemaDrumaYoga(),
             new ChandraMangalaYoga(),
             new SakataYoga(),
-            new VanchanaChoraBheethiYoga()
+            new VanchanaChoraBheethiYoga(),
+            new SasaYoga()
     );
 
     boolean isYogaPresent(BirthChart birthChartData);

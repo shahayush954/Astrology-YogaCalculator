@@ -33,6 +33,17 @@ The current codebase evaluates the following yogas:
 | Vesi Yoga | `yoga-calculator/src/yogas/VesiYoga.java` |
 | Vasi Yoga | `yoga-calculator/src/yogas/VasiYoga.java` |
 | Obhayachari Yoga | `yoga-calculator/src/yogas/ObhayachariYoga.java` |
+| Hamsa Yoga | `yoga-calculator/src/yogas/HamsaYoga.java` |
+| Malavya Yoga | `yoga-calculator/src/yogas/MalavyaYoga.java` |
+| Ruchaka Yoga | `yoga-calculator/src/yogas/RuchakaYoga.java` |
+| Bhadra Yoga | `yoga-calculator/src/yogas/BhadraYoga.java` |
+| Budha Aditya Yoga | `yoga-calculator/src/yogas/BudhaAdityaYoga.java` |
+| Maha Bhagya Yoga | `yoga-calculator/src/yogas/MahaBhagyaYoga.java` |
+| Pushkala Yoga | `yoga-calculator/src/yogas/PushkalaYoga.java` (stub) |
+| Lakshmi Yoga | `yoga-calculator/src/yogas/LakshmiYoga.java` (stub) |
+| Gauri Yoga | `yoga-calculator/src/yogas/GauriYoga.java` (stub) |
+| Bharathi Yoga | `yoga-calculator/src/yogas/BharathiYoga.java` (stub) |
+| Chapa Yoga | `yoga-calculator/src/yogas/ChapaYoga.java` |
 
 ### Negative Yogas
 
@@ -41,24 +52,27 @@ The current codebase evaluates the following yogas:
 | Kemadruma Yoga | `yoga-calculator/src/yogas/KemaDrumaYoga.java` |
 | Chandra Mangala Yoga | `yoga-calculator/src/yogas/ChandraMangalaYoga.java` |
 | Sakata Yoga | `yoga-calculator/src/yogas/SakataYoga.java` |
-| Vanchana Chora Bheethi Yoga | `yoga-calculator/src/yogas/VanchanaChoraBheethiYoga.java` (stub; returns false) |
+| Vanchana Chora Bheethi Yoga | `yoga-calculator/src/yogas/VanchanaChoraBheethiYoga.java` (stub) |
+| Sasa Yoga | `yoga-calculator/src/yogas/SasaYoga.java` |
 
-Note: the positive/negative grouping follows the codebase. Obhayachari Yoga is present when both Vesi and Vasi yogas are present.
+Note: The positive/negative grouping follows the codebase. Obhayachari Yoga is present when both Vesi and Vasi yogas are present. Maha Bhagya uses gender and birth period (morning/evening). Stub yogas return false until implemented.
 
 ## How It Works
 
 The application flow is:
 
 1. Ask the user for the birth chart's `Lagna`.
-2. Ask for the house number of each planet.
-3. Build derived chart data such as:
+2. Ask for the **Birth Period** (Morning: sunrise to sunset, or Evening: sunset to sunrise).
+3. Ask for the **Gender** of the native (Male or Female).
+4. Ask for the house number of each planet.
+5. Build derived chart data such as:
    - house -> rashi
    - planet -> house
    - house -> planets
    - planet -> rashi
    - planets placed in their own signs
-4. Evaluate the configured yoga rules.
-5. Print all matching positive yogas, then all matching negative yogas.
+6. Evaluate the configured yoga rules.
+7. Print all matching positive yogas, then all matching negative yogas.
 
 The current program uses manual house entry only. It does not calculate planetary positions from date, time, or location.
 
@@ -74,6 +88,8 @@ Astrology-YogaCalculator/
         |-- birthChart/
         |   `-- BirthChart.java
         |-- chartBlocks/
+        |   |-- BirthPeriod.java
+        |   |-- Gender.java
         |   |-- Houses.java
         |   |-- Planets.java
         |   `-- Rashis.java
@@ -83,15 +99,27 @@ Astrology-YogaCalculator/
             |-- AdhiYoga.java
             |-- AmalaYoga.java
             |-- AnaphaYoga.java
+            |-- BharathiYoga.java
+            |-- BhadraYoga.java
+            |-- BudhaAdityaYoga.java
+            |-- ChapaYoga.java
             |-- ChandraMangalaYoga.java
             |-- ChatussagaraYoga.java
             |-- DhurdhuraYoga.java
             |-- GajKesariYoga.java
+            |-- GauriYoga.java
+            |-- HamsaYoga.java
             |-- KemaDrumaYoga.java
+            |-- LakshmiYoga.java
+            |-- MahaBhagyaYoga.java
+            |-- MalavyaYoga.java
             |-- ObhayachariYoga.java
             |-- ParvataYoga.java
+            |-- PushkalaYoga.java
             |-- RajalakshanaYoga.java
+            |-- RuchakaYoga.java
             |-- SakataYoga.java
+            |-- SasaYoga.java
             |-- SunaphaYoga.java
             |-- VanchanaChoraBheethiYoga.java
             |-- VasiYoga.java
@@ -115,6 +143,7 @@ Astrology-YogaCalculator/
 `yoga-calculator/src/birthChart/BirthChart.java` stores and derives the main chart data used by yoga rules, including:
 
 - `Lagna`
+- **Birth Period** (Morning / Evening) and **Gender** — used e.g. by Maha Bhagya Yoga
 - house-wise rashis
 - planet-wise houses
 - house-wise planets
@@ -178,6 +207,8 @@ If `..\out` already exists, `mkdir` may print a message or reuse the folder depe
 When the application starts, it prompts for:
 
 - the Lagna as a number from `1` to `12`
+- the Birth Period: `1` for Morning (sunrise to sunset), `2` for Evening (sunset to sunrise)
+- the Gender: `1` for Male, `2` for Female
 - the house placement of each planet as a number from `1` to `12`
 
 The current planet input order is:

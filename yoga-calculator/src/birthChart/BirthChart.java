@@ -1,5 +1,7 @@
 package birthChart;
 
+import chartBlocks.BirthPeriod;
+import chartBlocks.Gender;
 import chartBlocks.Houses;
 import chartBlocks.Planets;
 import chartBlocks.Rashis;
@@ -9,6 +11,8 @@ import java.util.*;
 public class BirthChart {
 
     Rashis Lagna = null;
+    BirthPeriod birthPeriod = null;
+    Gender gender = null;
     Map<Houses, Rashis> houseWiseRashis = new HashMap<>();
     Map<Planets, Houses> planetHouses = new HashMap<>();
     Map<Houses, List<Planets>> houseWisePlanets = new HashMap<>();
@@ -23,6 +27,18 @@ public class BirthChart {
         put(Planets.MARS, Arrays.asList(Rashis.getRashiFromNumber(1), Rashis.getRashiFromNumber(8)));
         put(Planets.JUPITER, Arrays.asList(Rashis.getRashiFromNumber(9), Rashis.getRashiFromNumber(12)));
         put(Planets.SATURN, Arrays.asList(Rashis.getRashiFromNumber(10), Rashis.getRashiFromNumber(11)));
+    }};
+
+    Map<Planets, Rashis> planetWiseExaltationSigns = new HashMap(){{
+        put(Planets.SUN, Rashis.ARIES);
+        put(Planets.MOON, Rashis.TAURUS);
+        put(Planets.JUPITER, Rashis.CANCER);
+        put(Planets.RAHU, Rashis.GEMINI);
+        put(Planets.MERCURY, Rashis.VIRGO);
+        put(Planets.VENUS, Rashis.PISCES);
+        put(Planets.KETU, Rashis.SAGITTARIUS);
+        put(Planets.SATURN, Rashis.LIBRA);
+        put(Planets.MARS, Rashis.CAPRICORN);
     }};
 
     List<Planets> maleficPlanets = new ArrayList<>(Arrays.asList(
@@ -58,6 +74,8 @@ public class BirthChart {
 
     public void getBirthChartDetails() {
         initializeLagna();
+        initializeBirthPeriod();
+        initializeGender();
         initializeRashisForEachHouse();
         initializeHousesForEachPlanet();
         initializeHouseWisePlanets();
@@ -85,6 +103,42 @@ public class BirthChart {
             Scanner sc = new Scanner(System.in);
             int lagna = sc.nextInt();
             this.Lagna = Rashis.getRashiFromNumber(lagna);
+        }
+    }
+
+    private void initializeBirthPeriod() {
+        while (birthPeriod == null) {
+            System.out.println("Enter the Birth Period (Select accordingly): ");
+            System.out.println("1 for " + BirthPeriod.MORNING);
+            System.out.println("2 for " + BirthPeriod.EVENING);
+            System.out.println("Choose any one of the above: ");
+            Scanner sc = new Scanner(System.in);
+            int choice = sc.nextInt();
+            if (choice == 1) {
+                this.birthPeriod = BirthPeriod.MORNING;
+            } else if (choice == 2) {
+                this.birthPeriod = BirthPeriod.EVENING;
+            } else {
+                System.out.println("Invalid choice! Please enter 1 or 2.");
+            }
+        }
+    }
+
+    private void initializeGender() {
+        while (gender == null) {
+            System.out.println("Enter the Gender of the native (Select accordingly): ");
+            System.out.println("1 for " + Gender.MALE);
+            System.out.println("2 for " + Gender.FEMALE);
+            System.out.println("Choose any one of the above: ");
+            Scanner sc = new Scanner(System.in);
+            int choice = sc.nextInt();
+            if (choice == 1) {
+                this.gender = Gender.MALE;
+            } else if (choice == 2) {
+                this.gender = Gender.FEMALE;
+            } else {
+                System.out.println("Invalid choice! Please enter 1 or 2.");
+            }
         }
     }
 
@@ -249,6 +303,14 @@ public class BirthChart {
         return Lagna;
     }
 
+    public BirthPeriod getBirthPeriod() {
+        return birthPeriod;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
     public Map<Houses, Rashis> getHouseWiseRashis() {
         return houseWiseRashis;
     }
@@ -286,5 +348,10 @@ public class BirthChart {
 
     public List<Planets> getNaturalBeneficPlanets() {
         return naturalBeneficPlanets;
+    }
+
+    /** Returns the sign of exaltation for the given planet, or null if not defined. */
+    public Rashis getExaltationRashi(Planets planet) {
+        return planetWiseExaltationSigns.get(planet);
     }
 }
