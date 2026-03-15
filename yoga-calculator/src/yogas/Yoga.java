@@ -12,12 +12,22 @@ public interface Yoga {
             new SunaphaYoga(),
             new AnaphaYoga(),
             new DhurdhuraYoga(),
-            new AdhiYoga()
+            new AdhiYoga(),
+            new ChatussagaraYoga(),
+            new VasumathiYoga(),
+            new RajalakshanaYoga(),
+            new AmalaYoga(),
+            new ParvataYoga(),
+            new VesiYoga(),
+            new VasiYoga(),
+            new ObhayachariYoga()
     );
 
     List<Yoga> negativeYogas = Arrays.asList(
             new KemaDrumaYoga(),
-            new ChandraMangalaYoga()
+            new ChandraMangalaYoga(),
+            new SakataYoga(),
+            new VanchanaChoraBheethiYoga()
     );
 
     boolean isYogaPresent(BirthChart birthChartData);

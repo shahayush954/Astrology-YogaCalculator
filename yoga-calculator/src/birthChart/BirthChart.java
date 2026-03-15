@@ -45,6 +45,17 @@ public class BirthChart {
             Planets.MERCURY, Planets.JUPITER, Planets.VENUS
     );
 
+    /** The four Kendra (angular) houses: 1st, 4th, 7th and 10th. Use for yoga rules that reference Kendras. */
+    public static final List<Houses> KENDRA_HOUSES = Collections.unmodifiableList(Arrays.asList(
+            Houses.FIRST_HOUSE,
+            Houses.FOURTH_HOUSE,
+            Houses.SEVENTH_HOUSE,
+            Houses.TENTH_HOUSE
+    ));
+
+    /** House offsets for Dusthana houses: 6th, 8th and 12th from a reference. Use for yoga rules (e.g. Sakata). */
+    public static final List<Integer> DUSTHANA_OFFSETS = Collections.unmodifiableList(Arrays.asList(6, 8, 12));
+
     public void getBirthChartDetails() {
         initializeLagna();
         initializeRashisForEachHouse();
