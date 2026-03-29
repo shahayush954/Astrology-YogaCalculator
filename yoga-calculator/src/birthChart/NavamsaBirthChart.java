@@ -1,20 +1,18 @@
 package birthChart;
 
-import chartBlocks.BirthPeriod;
-import chartBlocks.Gender;
 import chartBlocks.Houses;
 import chartBlocks.Planets;
 import chartBlocks.Rashis;
 
 import java.util.*;
 
-public class BirthChart {
+/**
+ * Navamsa (D9) chart: same structural model as {@link BirthChart} for the divisional chart.
+ * Birth period and gender are not stored for Navamsa; use {@link BirthChart} for those.
+ */
+public class NavamsaBirthChart {
 
     Rashis Lagna = null;
-    BirthPeriod birthPeriod = null;
-    Gender gender = null;
-    /** Populated when the user opts to enter Navamsa (D9) details after the Rashi chart. */
-    NavamsaBirthChart navamsaBirthChart = null;
     Map<Houses, Rashis> houseWiseRashis = new HashMap<>();
     Map<Planets, Houses> planetHouses = new HashMap<>();
     Map<Houses, List<Planets>> houseWisePlanets = new HashMap<>();
@@ -63,67 +61,30 @@ public class BirthChart {
             Planets.MERCURY, Planets.JUPITER, Planets.VENUS
     );
 
-    Map<Planets, List<Houses>> planetWiseAspects = new HashMap(){{
-        put(Planets.SUN, Arrays.asList(Houses.SEVENTH_HOUSE));
-        put(Planets.MOON, Arrays.asList(Houses.SEVENTH_HOUSE));
-        put(Planets.MERCURY, Arrays.asList(Houses.SEVENTH_HOUSE));
-        put(Planets.VENUS, Arrays.asList(Houses.SEVENTH_HOUSE));
-        put(Planets.MARS, Arrays.asList(Houses.FOURTH_HOUSE, Houses.SEVENTH_HOUSE, Houses.EIGHT_HOUSE));
-        put(Planets.JUPITER, Arrays.asList(Houses.FIFTH_HOUSE, Houses.SEVENTH_HOUSE, Houses.NINTH_HOUSE));
-        put(Planets.SATURN, Arrays.asList(Houses.THIRD_HOUSE, Houses.SEVENTH_HOUSE, Houses.TENTH_HOUSE));
-        put(Planets.KETU, Arrays.asList(Houses.FIFTH_HOUSE, Houses.SEVENTH_HOUSE, Houses.NINTH_HOUSE));
-        put(Planets.RAHU, Arrays.asList(Houses.FIFTH_HOUSE, Houses.SEVENTH_HOUSE, Houses.NINTH_HOUSE));
-    }};
+    /** Same Kendra definition as {@link BirthChart}. */
+    public static final List<Houses> KENDRA_HOUSES = BirthChart.KENDRA_HOUSES;
 
+    /** Same dusthana offsets as {@link BirthChart}. */
+    public static final List<Integer> DUSTHANA_OFFSETS = BirthChart.DUSTHANA_OFFSETS;
 
-    /** The four Kendra (angular) houses: 1st, 4th, 7th and 10th. Use for yoga rules that reference Kendras. */
-    public static final List<Houses> KENDRA_HOUSES = Collections.unmodifiableList(Arrays.asList(
-            Houses.FIRST_HOUSE,
-            Houses.FOURTH_HOUSE,
-            Houses.SEVENTH_HOUSE,
-            Houses.TENTH_HOUSE
-    ));
+    /** Console flow: D9 Lagna, then planet houses and derived chart data. */
+    public void getNavamsaBirthChartDetails() {
+        completeNavamsaChart();
+    }
 
-    /** House offsets for Dusthana houses: 6th, 8th and 12th from a reference. Use for yoga rules (e.g. Sakata). */
-    public static final List<Integer> DUSTHANA_OFFSETS = Collections.unmodifiableList(Arrays.asList(6, 8, 12));
-
-    public void getBirthChartDetails() {
+    private void completeNavamsaChart() {
         initializeLagna();
-        initializeBirthPeriod();
-        initializeGender();
         initializeRashisForEachHouse();
         initializeHousesForEachPlanet();
         initializeHouseWisePlanets();
         initializePlanetWiseRashis();
         initializeOwnHousePlanets();
         initializeMaleficsAndBenefics();
-        maybeInitializeNavamsaChart();
-    }
-
-    private void maybeInitializeNavamsaChart() {
-        while (true) {
-            System.out.println("Do you want to enter Navamsa (D9) chart details, or proceed without Navamsa?");
-            System.out.println("1 Yes — enter Navamsa chart");
-            System.out.println("2 No — proceed without Navamsa");
-            System.out.println("Choose any one of the above: ");
-            Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-            if (choice == 1) {
-                navamsaBirthChart = new NavamsaBirthChart();
-                navamsaBirthChart.getNavamsaBirthChartDetails();
-                return;
-            }
-            if (choice == 2) {
-                navamsaBirthChart = null;
-                return;
-            }
-            System.out.println("Invalid choice! Please enter 1 or 2.");
-        }
     }
 
     private void initializeLagna() {
         while (Lagna == null) {
-            System.out.println("Enter the Lagna of the birth chart (Select accordingly): ");
+            System.out.println("Enter the Navamsa (D9) Lagna (Select accordingly): ");
             System.out.println("1 for " + Rashis.ARIES);
             System.out.println("2 for " + Rashis.TAURUS);
             System.out.println("3 for " + Rashis.GEMINI);
@@ -143,42 +104,6 @@ public class BirthChart {
         }
     }
 
-    private void initializeBirthPeriod() {
-        while (birthPeriod == null) {
-            System.out.println("Enter the Birth Period (Select accordingly): ");
-            System.out.println("1 for " + BirthPeriod.MORNING);
-            System.out.println("2 for " + BirthPeriod.EVENING);
-            System.out.println("Choose any one of the above: ");
-            Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-            if (choice == 1) {
-                this.birthPeriod = BirthPeriod.MORNING;
-            } else if (choice == 2) {
-                this.birthPeriod = BirthPeriod.EVENING;
-            } else {
-                System.out.println("Invalid choice! Please enter 1 or 2.");
-            }
-        }
-    }
-
-    private void initializeGender() {
-        while (gender == null) {
-            System.out.println("Enter the Gender of the native (Select accordingly): ");
-            System.out.println("1 for " + Gender.MALE);
-            System.out.println("2 for " + Gender.FEMALE);
-            System.out.println("Choose any one of the above: ");
-            Scanner sc = new Scanner(System.in);
-            int choice = sc.nextInt();
-            if (choice == 1) {
-                this.gender = Gender.MALE;
-            } else if (choice == 2) {
-                this.gender = Gender.FEMALE;
-            } else {
-                System.out.println("Invalid choice! Please enter 1 or 2.");
-            }
-        }
-    }
-
     private void initializeRashisForEachHouse() {
         if (this.Lagna == null) return;
 
@@ -195,7 +120,7 @@ public class BirthChart {
         int i=0;
         Scanner sc = new Scanner(System.in);
         while (i<allPlanets.length) {
-            System.out.println("What is the house of " + allPlanets[i] + " ? Enter house number from 1 to 12");
+            System.out.println("Navamsa (D9): What is the house of " + allPlanets[i] + " ? Enter house number from 1 to 12");
             int planetHouse = sc.nextInt();
 
             if (planetHouse < 1 || planetHouse > 12)  {
@@ -292,7 +217,7 @@ public class BirthChart {
     }
 
     public void printHouseWiseRashis() {
-        System.out.println("==================== House wise Rashis as follows: ");
+        System.out.println("==================== Navamsa (D9) — House wise Rashis: ");
         for (Map.Entry<Houses, Rashis> entry : houseWiseRashis.entrySet()) {
             System.out.println("House: " + entry.getKey() + "  Rashi: " + entry.getValue());
         }
@@ -301,7 +226,7 @@ public class BirthChart {
     }
 
     public void printPlanetHouses() {
-        System.out.println("==================== Houses for each Planet is as follows: ");
+        System.out.println("==================== Navamsa (D9) — Houses for each Planet: ");
         for (Map.Entry<Planets, Houses> entry : planetHouses.entrySet()) {
             System.out.println("Planet: " + entry.getKey() + " House: " + entry.getValue());
         }
@@ -310,7 +235,7 @@ public class BirthChart {
     }
 
     public void printHouseWisePlanets() {
-        System.out.println("==================== House containing planets is as follows: ");
+        System.out.println("==================== Navamsa (D9) — House containing planets: ");
         for (Map.Entry<Houses, List<Planets>> entry : houseWisePlanets.entrySet()) {
             System.out.println("House: " + entry.getKey() + " Planets: " + entry.getValue());
         }
@@ -319,7 +244,7 @@ public class BirthChart {
     }
 
     public void printPlanetWiseRashi() {
-        System.out.println("==================== Rashis of each planets is as follows: ");
+        System.out.println("==================== Navamsa (D9) — Rashis of each planet: ");
         for (Map.Entry<Planets, Rashis> entry : planetWiseRashis.entrySet()) {
             System.out.println("Planet: " + entry.getKey() + " Rashi: " + entry.getValue());
         }
@@ -328,7 +253,7 @@ public class BirthChart {
     }
 
     public void printOwnHousePlanets() {
-        System.out.println("==================== Planets which are in their own houses: ");
+        System.out.println("==================== Navamsa (D9) — Planets in own sign: ");
         for (Map.Entry<Planets, Rashis> entry : ownHousePlanets.entrySet()) {
             System.out.println("Planet: " + entry.getKey() + " is placed in its own Rashi: " + entry.getValue());
         }
@@ -338,19 +263,6 @@ public class BirthChart {
 
     public Rashis getLagna() {
         return Lagna;
-    }
-
-    public BirthPeriod getBirthPeriod() {
-        return birthPeriod;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    /** Navamsa chart if the user chose to enter it; otherwise null. */
-    public NavamsaBirthChart getNavamsaBirthChart() {
-        return navamsaBirthChart;
     }
 
     public Map<Houses, Rashis> getHouseWiseRashis() {
@@ -392,12 +304,10 @@ public class BirthChart {
         return naturalBeneficPlanets;
     }
 
-    /** Returns the sign of exaltation for the given planet, or null if not defined. */
     public Rashis getExaltationRashi(Planets planet) {
         return planetWiseExaltationSigns.get(planet);
     }
 
-    /** Returns the single planet that lords the sign occupying the given house, or null if none. */
     public Planets getLordOfHouse(Houses house) {
         Rashis rashiInHouse = houseWiseRashis.get(house);
         if (rashiInHouse == null) return null;
@@ -406,27 +316,5 @@ public class BirthChart {
                 .map(e -> e.getKey())
                 .findFirst()
                 .orElse(null);
-    }
-
-    /**
-     * Whether {@code planet} casts a full (sign-based) aspect on {@code targetHouse} from its
-     * placement, using the chart’s {@link #planetWiseAspects} offsets (e.g. 7th for most grahas).
-     */
-    public boolean planetAspectsHouse(Planets planet, Houses targetHouse) {
-        Houses from = planetHouses.get(planet);
-        if (from == null || targetHouse == null) {
-            return false;
-        }
-        List<Houses> offsets = planetWiseAspects.get(planet);
-        if (offsets == null) {
-            return false;
-        }
-        for (Houses offset : offsets) {
-            int delta = offset.getHouseNumber();
-            if (getNthHouseFromGivenHouse(from, delta).equals(targetHouse)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

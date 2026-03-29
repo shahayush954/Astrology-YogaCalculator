@@ -9,6 +9,7 @@ public interface Yoga {
 
     List<Yoga> positiveYogas = Arrays.asList(
             new GajKesariYoga(),
+            new GajaYoga(),
             new SunaphaYoga(),
             new AnaphaYoga(),
             new DhurdhuraYoga(),
@@ -32,7 +33,17 @@ public interface Yoga {
             new GauriYoga(),
             new BharathiYoga(),
             new ChapaYoga(),
-            new SreenathaYoga()
+            new SreenathaYoga(),
+            new ParijathaYoga(),
+            new LagnaMalikaYoga(),
+            new DhanaMalikaYoga(),
+            new VikramaMalikaYoga(),
+            new SukhaMalikaYoga(),
+            new PutraMalikaYoga(),
+            new BhagyaMalikaYoga(),
+            new KarmaMalikaYoga(),
+            new LabhaMalikaYoga(),
+            new VrayaMalikaYoga()
     );
 
     List<Yoga> negativeYogas = Arrays.asList(
@@ -40,7 +51,10 @@ public interface Yoga {
             new ChandraMangalaYoga(),
             new SakataYoga(),
             new VanchanaChoraBheethiYoga(),
-            new SasaYoga()
+            new SasaYoga(),
+            new SatruMalikaYoga(),
+            new KalatraMalikaYoga(),
+            new RandhraMalikaYoga()
     );
 
     boolean isYogaPresent(BirthChart birthChartData);

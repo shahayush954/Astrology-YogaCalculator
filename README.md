@@ -9,6 +9,7 @@ The program asks for the chart's `Lagna` and the house placement of each planet,
 - Interactive command-line input for Lagna and planetary house placements
 - Internal birth chart model with house-wise and planet-wise lookups
 - Support for both positive and negative yoga checks
+- Optional **Navamsa (D9)** entry after the Rashi chart (used by yogas that require D9)
 - Simple rule-based design that is easy to extend with additional yogas
 - Runs as a lightweight Java application with no external dependencies
 
@@ -21,6 +22,7 @@ The current codebase evaluates the following yogas:
 | Yoga | Implemented In |
 | --- | --- |
 | GajKesari Yoga | `yoga-calculator/src/yogas/GajKesariYoga.java` |
+| Gaja Yoga | `yoga-calculator/src/yogas/GajaYoga.java` |
 | Sunapha Yoga | `yoga-calculator/src/yogas/SunaphaYoga.java` |
 | Anapha Yoga | `yoga-calculator/src/yogas/AnaphaYoga.java` |
 | Dhurdhura Yoga | `yoga-calculator/src/yogas/DhurdhuraYoga.java` |
@@ -44,6 +46,17 @@ The current codebase evaluates the following yogas:
 | Gauri Yoga | `yoga-calculator/src/yogas/GauriYoga.java` (stub) |
 | Bharathi Yoga | `yoga-calculator/src/yogas/BharathiYoga.java` (stub) |
 | Chapa Yoga | `yoga-calculator/src/yogas/ChapaYoga.java` |
+| Sreenatha Yoga | `yoga-calculator/src/yogas/SreenathaYoga.java` |
+| Parijatha Yoga | `yoga-calculator/src/yogas/ParijathaYoga.java` |
+| Lagna Malika Yoga | `yoga-calculator/src/yogas/LagnaMalikaYoga.java` |
+| Dhana Malika Yoga | `yoga-calculator/src/yogas/DhanaMalikaYoga.java` |
+| Vikrama Malika Yoga | `yoga-calculator/src/yogas/VikramaMalikaYoga.java` |
+| Sukha Malika Yoga | `yoga-calculator/src/yogas/SukhaMalikaYoga.java` |
+| Putra Malika Yoga | `yoga-calculator/src/yogas/PutraMalikaYoga.java` |
+| Bhagya Malika Yoga | `yoga-calculator/src/yogas/BhagyaMalikaYoga.java` |
+| Karma Malika Yoga | `yoga-calculator/src/yogas/KarmaMalikaYoga.java` |
+| Labha Malika Yoga | `yoga-calculator/src/yogas/LabhaMalikaYoga.java` |
+| Vraya Malika Yoga | `yoga-calculator/src/yogas/VrayaMalikaYoga.java` |
 
 ### Negative Yogas
 
@@ -54,8 +67,17 @@ The current codebase evaluates the following yogas:
 | Sakata Yoga | `yoga-calculator/src/yogas/SakataYoga.java` |
 | Vanchana Chora Bheethi Yoga | `yoga-calculator/src/yogas/VanchanaChoraBheethiYoga.java` (stub) |
 | Sasa Yoga | `yoga-calculator/src/yogas/SasaYoga.java` |
+| Satru Malika Yoga | `yoga-calculator/src/yogas/SatruMalikaYoga.java` |
+| Kalatra Malika Yoga | `yoga-calculator/src/yogas/KalatraMalikaYoga.java` |
+| Randhra Malika Yoga | `yoga-calculator/src/yogas/RandhraMalikaYoga.java` |
 
-Note: The positive/negative grouping follows the codebase. Obhayachari Yoga is present when both Vesi and Vasi yogas are present. Maha Bhagya uses gender and birth period (morning/evening). Stub yogas return false until implemented.
+**Notes**
+
+- The positive/negative grouping follows `Yoga.java`. **Obhayachari** Yoga applies when both **Vesi** and **Vasi** are present. **Maha Bhagya** uses gender and birth period (morning/evening).
+- **Parijatha** Yoga needs **Navamsa (D9)** to be entered; if the user skips D9, it always returns false.
+- **Malika** yogas use the seven classical grahas (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) via `Planets.SEVEN_GRAHAS`, each in one of seven consecutive whole-sign houses starting from the yoga’s anchor house (with wrap after the 12th). **Satru**, **Kalatra**, and **Randhra** Malika are listed under negative yogas.
+- **Gaja** Yoga uses **graha drishti** from `BirthChart.planetAspectsHouse(...)` (offsets defined on `BirthChart`).
+- Stub yogas (**Pushkala**, **Lakshmi**, **Gauri**, **Bharathi**, **Vanchana Chora Bheethi**) still return false until fully implemented.
 
 ## How It Works
 
@@ -65,14 +87,15 @@ The application flow is:
 2. Ask for the **Birth Period** (Morning: sunrise to sunset, or Evening: sunset to sunrise).
 3. Ask for the **Gender** of the native (Male or Female).
 4. Ask for the house number of each planet.
-5. Build derived chart data such as:
+5. Optionally ask whether to enter **Navamsa (D9)**; if yes, collect D9 Lagna and planet houses.
+6. Build derived chart data such as:
    - house -> rashi
    - planet -> house
    - house -> planets
    - planet -> rashi
    - planets placed in their own signs
-6. Evaluate the configured yoga rules.
-7. Print all matching positive yogas, then all matching negative yogas.
+7. Evaluate the configured yoga rules.
+8. Print all matching positive yogas, then all matching negative yogas.
 
 The current program uses manual house entry only. It does not calculate planetary positions from date, time, or location.
 
@@ -86,7 +109,8 @@ Astrology-YogaCalculator/
     `-- src/
         |-- YogaChecker.java
         |-- birthChart/
-        |   `-- BirthChart.java
+        |   |-- BirthChart.java
+        |   `-- NavamsaBirthChart.java
         |-- chartBlocks/
         |   |-- BirthPeriod.java
         |   |-- Gender.java
@@ -96,35 +120,51 @@ Astrology-YogaCalculator/
         `-- yogas/
             |-- AbstractYoga.java
             |-- Yoga.java
+            |-- MalikaYogaChecker.java
             |-- AdhiYoga.java
             |-- AmalaYoga.java
             |-- AnaphaYoga.java
+            |-- BhagyaMalikaYoga.java
             |-- BharathiYoga.java
             |-- BhadraYoga.java
             |-- BudhaAdityaYoga.java
             |-- ChapaYoga.java
             |-- ChandraMangalaYoga.java
             |-- ChatussagaraYoga.java
+            |-- DhanaMalikaYoga.java
             |-- DhurdhuraYoga.java
+            |-- GajaYoga.java
             |-- GajKesariYoga.java
             |-- GauriYoga.java
             |-- HamsaYoga.java
+            |-- KalatraMalikaYoga.java
+            |-- KarmaMalikaYoga.java
             |-- KemaDrumaYoga.java
+            |-- LabhaMalikaYoga.java
+            |-- LagnaMalikaYoga.java
             |-- LakshmiYoga.java
-            |-- MahaBhagyaYoga.java
             |-- MalavyaYoga.java
+            |-- MahaBhagyaYoga.java
             |-- ObhayachariYoga.java
+            |-- ParijathaYoga.java
             |-- ParvataYoga.java
             |-- PushkalaYoga.java
+            |-- PutraMalikaYoga.java
             |-- RajalakshanaYoga.java
+            |-- RandhraMalikaYoga.java
             |-- RuchakaYoga.java
             |-- SakataYoga.java
+            |-- SatruMalikaYoga.java
             |-- SasaYoga.java
+            |-- SreenathaYoga.java
+            |-- SukhaMalikaYoga.java
             |-- SunaphaYoga.java
             |-- VanchanaChoraBheethiYoga.java
             |-- VasiYoga.java
             |-- VasumathiYoga.java
-            `-- VesiYoga.java
+            |-- VesiYoga.java
+            |-- VikramaMalikaYoga.java
+            `-- VrayaMalikaYoga.java
 ```
 
 ## Core Components
@@ -144,6 +184,7 @@ Astrology-YogaCalculator/
 
 - `Lagna`
 - **Birth Period** (Morning / Evening) and **Gender** — used e.g. by Maha Bhagya Yoga
+- optional **`NavamsaBirthChart`** when the user chooses to enter D9
 - house-wise rashis
 - planet-wise houses
 - house-wise planets
@@ -152,8 +193,13 @@ Astrology-YogaCalculator/
 - benefic and malefic groupings
 - **`KENDRA_HOUSES`** — global list of the four angular houses (1st, 4th, 7th, 10th) for reuse in yoga rules
 - **`DUSTHANA_OFFSETS`** — global list of dusthana house offsets (6, 8, 12) for reuse (e.g. Sakata Yoga)
+- **`planetAspectsHouse(planet, house)`** — sign-based graha drishti using internal aspect offsets (e.g. Gaja Yoga)
 
-It also provides utility logic such as `getNthHouseFromGivenHouse(...)` and `getRashiLords()`, which are used heavily by the yoga implementations.
+It also provides utility logic such as `getNthHouseFromGivenHouse(...)`, `getLordOfHouse(...)`, and `getRashiLords()`, which are used heavily by the yoga implementations.
+
+### `NavamsaBirthChart`
+
+`yoga-calculator/src/birthChart/NavamsaBirthChart.java` mirrors the Rashi chart structure for D9 (Lagna, house-wise rashis, planet houses, lords, etc.) when Navamsa data is collected.
 
 ### `chartBlocks`
 
@@ -161,7 +207,7 @@ The `chartBlocks` package contains the basic building blocks used throughout the
 
 - `Houses` for the 12 houses
 - `Rashis` for the 12 rashis
-- `Planets` for the planetary constants used by the rules
+- `Planets` for the planetary constants used by the rules, including **`Planets.SEVEN_GRAHAS`** (Sun through Saturn, excluding Rahu/Ketu) for Malika and similar rules
 
 ### `yogas`
 
@@ -210,6 +256,7 @@ When the application starts, it prompts for:
 - the Birth Period: `1` for Morning (sunrise to sunset), `2` for Evening (sunset to sunrise)
 - the Gender: `1` for Male, `2` for Female
 - the house placement of each planet as a number from `1` to `12`
+- optionally, Navamsa Lagna and each planet’s D9 house (same planet order)
 
 The current planet input order is:
 
