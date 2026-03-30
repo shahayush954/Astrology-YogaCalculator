@@ -87,6 +87,27 @@ public class BirthChart {
     /** House offsets for Dusthana houses: 6th, 8th and 12th from a reference. Use for yoga rules (e.g. Sakata). */
     public static final List<Integer> DUSTHANA_OFFSETS = Collections.unmodifiableList(Arrays.asList(6, 8, 12));
 
+    public static final List<Rashis> MOVABLE_RASHIS = Collections.unmodifiableList(Arrays.asList(
+        Rashis.ARIES,
+        Rashis.CANCER,
+        Rashis.LIBRA,
+        Rashis.CAPRICORN
+    ));
+
+    public static final List<Rashis> FIXED_RASHIS = Collections.unmodifiableList(Arrays.asList(
+        Rashis.TAURUS,
+        Rashis.LEO,
+        Rashis.SCORPIO,
+        Rashis.AQUARIUS
+    ));
+
+    public static final List<Rashis> MIXED_RASHIS = Collections.unmodifiableList(Arrays.asList(
+        Rashis.GEMINI,
+        Rashis.VIRGO,
+        Rashis.SAGITTARIUS,
+        Rashis.PISCES
+    ));
+
     public void getBirthChartDetails() {
         initializeLagna();
         initializeBirthPeriod();
