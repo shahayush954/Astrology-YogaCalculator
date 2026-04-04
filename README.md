@@ -26,20 +26,26 @@ The current codebase evaluates the following yogas:
 | Sunapha Yoga | `yoga-calculator/src/yogas/SunaphaYoga.java` |
 | Anapha Yoga | `yoga-calculator/src/yogas/AnaphaYoga.java` |
 | Dhurdhura Yoga | `yoga-calculator/src/yogas/DhurdhuraYoga.java` |
+| Devendra Yoga | `yoga-calculator/src/yogas/DevendraYoga.java` |
 | Adhi Yoga | `yoga-calculator/src/yogas/AdhiYoga.java` |
 | Chatussagara Yoga | `yoga-calculator/src/yogas/ChatussagaraYoga.java` |
 | Vasumathi Yoga | `yoga-calculator/src/yogas/VasumathiYoga.java` |
 | Rajalakshana Yoga | `yoga-calculator/src/yogas/RajalakshanaYoga.java` |
 | Amala Yoga | `yoga-calculator/src/yogas/AmalaYoga.java` |
+| Amsaavtara Yoga | `yoga-calculator/src/yogas/AmsavatarYoga.java` |
 | Parvata Yoga | `yoga-calculator/src/yogas/ParvataYoga.java` |
 | Vesi Yoga | `yoga-calculator/src/yogas/VesiYoga.java` |
 | Vasi Yoga | `yoga-calculator/src/yogas/VasiYoga.java` |
 | Obhayachari Yoga | `yoga-calculator/src/yogas/ObhayachariYoga.java` |
 | Hamsa Yoga | `yoga-calculator/src/yogas/HamsaYoga.java` |
+| Hari Hara Brahma Yoga | `yoga-calculator/src/yogas/HariHaraBrahmaYoga.java` |
 | Malavya Yoga | `yoga-calculator/src/yogas/MalavyaYoga.java` |
+| Matsya Yoga | `yoga-calculator/src/yogas/MatsyaYoga.java` |
 | Ruchaka Yoga | `yoga-calculator/src/yogas/RuchakaYoga.java` |
 | Bhadra Yoga | `yoga-calculator/src/yogas/BhadraYoga.java` |
 | Budha Aditya Yoga | `yoga-calculator/src/yogas/BudhaAdityaYoga.java` |
+| Kala Nidhi Yoga | `yoga-calculator/src/yogas/KalaNidhiYoga.java` |
+| Kusuma Yoga | `yoga-calculator/src/yogas/KusumaYoga.java` |
 | Maha Bhagya Yoga | `yoga-calculator/src/yogas/MahaBhagyaYoga.java` |
 | Pushkala Yoga | `yoga-calculator/src/yogas/PushkalaYoga.java` (stub) |
 | Lakshmi Yoga | `yoga-calculator/src/yogas/LakshmiYoga.java` (stub) |
@@ -76,7 +82,12 @@ The current codebase evaluates the following yogas:
 - The positive/negative grouping follows `Yoga.java`. **Obhayachari** Yoga applies when both **Vesi** and **Vasi** are present. **Maha Bhagya** uses gender and birth period (morning/evening).
 - **Parijatha** Yoga needs **Navamsa (D9)** to be entered; if the user skips D9, it always returns false.
 - **Malika** yogas use the seven classical grahas (Sun, Moon, Mars, Mercury, Jupiter, Venus, Saturn) via `Planets.SEVEN_GRAHAS`, each in one of seven consecutive whole-sign houses starting from the yoga’s anchor house (with wrap after the 12th). **Satru**, **Kalatra**, and **Randhra** Malika are listed under negative yogas.
-- **Gaja** Yoga uses **graha drishti** from `BirthChart.planetAspectsHouse(...)` (offsets defined on `BirthChart`).
+- **Gaja** and **Kala Nidhi** use **graha drishti** from `BirthChart.planetAspectsHouse(...)` (offsets defined on `BirthChart`).
+- **Devendra** Yoga needs a **fixed** Lagna (`BirthChart.FIXED_RASHIS`) plus parivartana between the lords of the 1st and 11th, and between the lords of the 2nd and 10th.
+- **Amsaavtara** Yoga uses **movable** Lagna (`BirthChart.MOVABLE_RASHIS`), Jupiter and Venus in Kendras, and Saturn **exalted** in a Kendra.
+- **Hari Hara Brahma** Yoga is true if **any** of **Hari**, **Hara**, or **Brahma** sub-conditions holds (see class comment in `HariHaraBrahmaYoga.java`).
+- **Matsya** Yoga uses **natural** malefic/benefic lists from `BirthChart` for the specified houses (1st, 4th, 5th, 8th, 9th).
+- **Kusuma** Yoga: Jupiter in Lagna, Moon in the 7th, Sun in the 8th from the Moon.
 - Stub yogas (**Pushkala**, **Lakshmi**, **Gauri**, **Bharathi**, **Vanchana Chora Bheethi**) still return false until fully implemented.
 
 ## How It Works
@@ -123,6 +134,7 @@ Astrology-YogaCalculator/
             |-- MalikaYogaChecker.java
             |-- AdhiYoga.java
             |-- AmalaYoga.java
+            |-- AmsavatarYoga.java
             |-- AnaphaYoga.java
             |-- BhagyaMalikaYoga.java
             |-- BharathiYoga.java
@@ -131,20 +143,25 @@ Astrology-YogaCalculator/
             |-- ChapaYoga.java
             |-- ChandraMangalaYoga.java
             |-- ChatussagaraYoga.java
+            |-- DevendraYoga.java
             |-- DhanaMalikaYoga.java
             |-- DhurdhuraYoga.java
             |-- GajaYoga.java
             |-- GajKesariYoga.java
             |-- GauriYoga.java
             |-- HamsaYoga.java
+            |-- HariHaraBrahmaYoga.java
             |-- KalatraMalikaYoga.java
+            |-- KalaNidhiYoga.java
             |-- KarmaMalikaYoga.java
             |-- KemaDrumaYoga.java
+            |-- KusumaYoga.java
             |-- LabhaMalikaYoga.java
             |-- LagnaMalikaYoga.java
             |-- LakshmiYoga.java
             |-- MalavyaYoga.java
             |-- MahaBhagyaYoga.java
+            |-- MatsyaYoga.java
             |-- ObhayachariYoga.java
             |-- ParijathaYoga.java
             |-- ParvataYoga.java
@@ -193,7 +210,8 @@ Astrology-YogaCalculator/
 - benefic and malefic groupings
 - **`KENDRA_HOUSES`** — global list of the four angular houses (1st, 4th, 7th, 10th) for reuse in yoga rules
 - **`DUSTHANA_OFFSETS`** — global list of dusthana house offsets (6, 8, 12) for reuse (e.g. Sakata Yoga)
-- **`planetAspectsHouse(planet, house)`** — sign-based graha drishti using internal aspect offsets (e.g. Gaja Yoga)
+- **`MOVABLE_RASHIS`**, **`FIXED_RASHIS`**, and **`MIXED_RASHIS`** (dual signs) — used e.g. by Amsaavtara and Devendra Yoga
+- **`planetAspectsHouse(planet, house)`** — sign-based graha drishti using internal aspect offsets (e.g. Gaja Yoga, Kala Nidhi Yoga)
 
 It also provides utility logic such as `getNthHouseFromGivenHouse(...)`, `getLordOfHouse(...)`, and `getRashiLords()`, which are used heavily by the yoga implementations.
 
