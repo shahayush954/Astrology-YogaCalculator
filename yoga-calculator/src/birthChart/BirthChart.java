@@ -43,6 +43,26 @@ public class BirthChart {
         put(Planets.MARS, Rashis.CAPRICORN);
     }};
 
+    Map<Planets, Rashis> planetWiseDebilitationSigns = new HashMap(){{
+        put(Planets.SUN, Rashis.LIBRA);
+        put(Planets.MOON, Rashis.SCORPIO);
+        put(Planets.JUPITER, Rashis.CAPRICORN);
+        put(Planets.MERCURY, Rashis.PISCES);
+        put(Planets.VENUS, Rashis.VIRGO);
+        put(Planets.SATURN, Rashis.ARIES);
+        put(Planets.MARS, Rashis.CANCER);
+    }};
+
+    Map<Planets, Rashis> planetWiseMoolTrikonaSigns = new HashMap(){{
+        put(Planets.SUN, Rashis.LEO);
+        put(Planets.MOON, Rashis.TAURUS);
+        put(Planets.JUPITER, Rashis.SAGITTARIUS);
+        put(Planets.MERCURY, Rashis.VIRGO);
+        put(Planets.VENUS, Rashis.LIBRA);
+        put(Planets.SATURN, Rashis.AQUARIUS);
+        put(Planets.MARS, Rashis.ARIES);
+    }};
+
     List<Planets> maleficPlanets = new ArrayList<>(Arrays.asList(
             Planets.SUN, Planets.SATURN, Planets.MARS
     ));
@@ -416,6 +436,16 @@ public class BirthChart {
     /** Returns the sign of exaltation for the given planet, or null if not defined. */
     public Rashis getExaltationRashi(Planets planet) {
         return planetWiseExaltationSigns.get(planet);
+    }
+
+    /** Returns the sign of debilitation for the given planet, or null if not defined (e.g. Rahu/Ketu). */
+    public Rashis getDebilitationRashi(Planets planet) {
+        return planetWiseDebilitationSigns.get(planet);
+    }
+
+    /** Returns the Moolatrikona sign for the given planet, or null if not defined (e.g. Rahu/Ketu). */
+    public Rashis getMoolatrikonaRashi(Planets planet) {
+        return planetWiseMoolTrikonaSigns.get(planet);
     }
 
     /** Returns the single planet that lords the sign occupying the given house, or null if none. */
