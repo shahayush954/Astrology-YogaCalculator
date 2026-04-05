@@ -33,16 +33,25 @@ Order matches `Yoga.java` (`positiveYogas`).
 | Chatussagara Yoga | `yoga-calculator/src/yogas/ChatussagaraYoga.java` |
 | Chandika Yoga | `yoga-calculator/src/yogas/ChandikaYoga.java` |
 | Vasumathi Yoga | `yoga-calculator/src/yogas/VasumathiYoga.java` |
+| Vallaki Yoga | `yoga-calculator/src/yogas/VallakiYoga.java` |
+| Damni Yoga | `yoga-calculator/src/yogas/DamniYoga.java` |
+| Pasa Yoga | `yoga-calculator/src/yogas/PasaYoga.java` |
+| Kedara Yoga | `yoga-calculator/src/yogas/KedaraYoga.java` |
 | Vidyut Yoga | `yoga-calculator/src/yogas/VidyutYoga.java` |
 | Vishnu Yoga | `yoga-calculator/src/yogas/VishnuYoga.java` |
 | Rajalakshana Yoga | `yoga-calculator/src/yogas/RajalakshanaYoga.java` |
 | Amala Yoga | `yoga-calculator/src/yogas/AmalaYoga.java` |
 | Amsaavtara Yoga | `yoga-calculator/src/yogas/AmsavatarYoga.java` |
+| Rajju Yoga | `yoga-calculator/src/yogas/RajjuYoga.java` |
+| Musala Yoga | `yoga-calculator/src/yogas/MusalaYoga.java` |
 | Parvata Yoga | `yoga-calculator/src/yogas/ParvataYoga.java` |
 | Vesi Yoga | `yoga-calculator/src/yogas/VesiYoga.java` |
 | Vasi Yoga | `yoga-calculator/src/yogas/VasiYoga.java` |
 | Obhayachari Yoga | `yoga-calculator/src/yogas/ObhayachariYoga.java` |
 | Hamsa Yoga | `yoga-calculator/src/yogas/HamsaYoga.java` |
+| Harsha Yoga | `yoga-calculator/src/yogas/HarshaYoga.java` |
+| Sarala Yoga | `yoga-calculator/src/yogas/SaralaYoga.java` |
+| Vimala Yoga | `yoga-calculator/src/yogas/VimalaYoga.java` |
 | Hari Hara Brahma Yoga | `yoga-calculator/src/yogas/HariHaraBrahmaYoga.java` |
 | Indra Yoga | `yoga-calculator/src/yogas/IndraYoga.java` |
 | Jaya Yoga | `yoga-calculator/src/yogas/JayaYoga.java` |
@@ -55,6 +64,8 @@ Order matches `Yoga.java` (`positiveYogas`).
 | Brahma Yoga | `yoga-calculator/src/yogas/BrahmaYoga.java` |
 | Budha Aditya Yoga | `yoga-calculator/src/yogas/BudhaAdityaYoga.java` |
 | Kala Nidhi Yoga | `yoga-calculator/src/yogas/KalaNidhiYoga.java` |
+| Kamala Yoga | `yoga-calculator/src/yogas/KamalaYoga.java` |
+| Samudra Yoga | `yoga-calculator/src/yogas/SamudraYoga.java` |
 | Kulvardhana Yoga | `yoga-calculator/src/yogas/KulvardhanaYoga.java` |
 | Kusuma Yoga | `yoga-calculator/src/yogas/KusumaYoga.java` |
 | Maha Bhagya Yoga | `yoga-calculator/src/yogas/MahaBhagyaYoga.java` |
@@ -66,8 +77,11 @@ Order matches `Yoga.java` (`positiveYogas`).
 | Bharathi Yoga | `yoga-calculator/src/yogas/BharathiYoga.java` (stub) |
 | Chapa Yoga | `yoga-calculator/src/yogas/ChapaYoga.java` |
 | Sreenatha Yoga | `yoga-calculator/src/yogas/SreenathaYoga.java` |
+| Srik Yoga | `yoga-calculator/src/yogas/SrikYoga.java` |
 | Siva Yoga | `yoga-calculator/src/yogas/SivaYoga.java` |
 | Thrilochana Yoga | `yoga-calculator/src/yogas/ThrilochanaYoga.java` |
+| Sringhatka Yoga | `yoga-calculator/src/yogas/SringhatkaYoga.java` |
+| Hala Yoga | `yoga-calculator/src/yogas/HalaYoga.java` |
 | Parijatha Yoga | `yoga-calculator/src/yogas/ParijathaYoga.java` |
 | Lagna Malika Yoga | `yoga-calculator/src/yogas/LagnaMalikaYoga.java` |
 | Dhana Malika Yoga | `yoga-calculator/src/yogas/DhanaMalikaYoga.java` |
@@ -78,6 +92,14 @@ Order matches `Yoga.java` (`positiveYogas`).
 | Karma Malika Yoga | `yoga-calculator/src/yogas/KarmaMalikaYoga.java` |
 | Labha Malika Yoga | `yoga-calculator/src/yogas/LabhaMalikaYoga.java` |
 | Vraya Malika Yoga | `yoga-calculator/src/yogas/VrayaMalikaYoga.java` |
+| Gada Yoga | `yoga-calculator/src/yogas/GadaYoga.java` |
+| Sanaha Yoga | `yoga-calculator/src/yogas/SanahaYoga.java` |
+| Sareera Soukhya Yoga | `yoga-calculator/src/yogas/SareeraSoukhyaYoga.java` |
+| Vibhuka Yoga | `yoga-calculator/src/yogas/VibhukaYoga.java` |
+| Dhuriya Yoga | `yoga-calculator/src/yogas/DhuriyaYoga.java` |
+| Vajra Yoga | `yoga-calculator/src/yogas/VajraYoga.java` |
+| Vihaga Yoga | `yoga-calculator/src/yogas/VihagaYoga.java` |
+| Yava Yoga | `yoga-calculator/src/yogas/YavaYoga.java` |
 | Yupa Yoga | `yoga-calculator/src/yogas/YupaYoga.java` |
 | Ishu Yoga | `yoga-calculator/src/yogas/IshuYoga.java` |
 | Sakti Yoga | `yoga-calculator/src/yogas/SaktiYoga.java` |
@@ -89,21 +111,46 @@ Order matches `Yoga.java` (`positiveYogas`).
 | --- | --- |
 | Kemadruma Yoga | `yoga-calculator/src/yogas/KemaDrumaYoga.java` |
 | Chandra Mangala Yoga | `yoga-calculator/src/yogas/ChandraMangalaYoga.java` |
+| Dur Yoga | `yoga-calculator/src/yogas/DurYoga.java` |
+| Daridra Yoga | `yoga-calculator/src/yogas/DaridraYoga.java` |
 | Sakata Yoga | `yoga-calculator/src/yogas/SakataYoga.java` |
+| Sakata Nabhasa Yoga | `yoga-calculator/src/yogas/SakataNabhasaYoga.java` |
 | Vanchana Chora Bheethi Yoga | `yoga-calculator/src/yogas/VanchanaChoraBheethiYoga.java` (stub) |
 | Sasa Yoga | `yoga-calculator/src/yogas/SasaYoga.java` |
+| Sarpa Yoga | `yoga-calculator/src/yogas/SarpaYoga.java` |
 | Satru Malika Yoga | `yoga-calculator/src/yogas/SatruMalikaYoga.java` |
 | Kalatra Malika Yoga | `yoga-calculator/src/yogas/KalatraMalikaYoga.java` |
 | Randhra Malika Yoga | `yoga-calculator/src/yogas/RandhraMalikaYoga.java` |
+| Nala Yoga | `yoga-calculator/src/yogas/NalaYoga.java` |
+| Sula Yoga | `yoga-calculator/src/yogas/SulaYoga.java` |
+| Yuga Yoga | `yoga-calculator/src/yogas/YugaYoga.java` |
+| Gola Yoga | `yoga-calculator/src/yogas/GolaYoga.java` |
 
 **Notes**
 
 - The positive/negative grouping follows `Yoga.java`. **Obhayachari** Yoga applies when both **Vesi** and **Vasi** are present. **Maha Bhagya** uses gender and birth period (morning/evening).
 - **Navamsa (D9)** is required for **Parijatha**, **Chandika**, **Vishnu**, and **Garuda** (among others); if the user skips D9, those rules return false. **Garuda** also requires **Morning** birth period (daytime, as defined in the app).
 - **Malika** yogas use the seven classical grahas via `Planets.SEVEN_GRAHAS`, each in one of seven consecutive whole-sign houses from the yoga’s anchor (with wrap after the 12th). **Satru**, **Kalatra**, and **Randhra** Malika are negative.
+- **Rajju** and **Musala** Yoga (positive Nabhasa): all seven classical grahas occupy only **movable** or **fixed** whole-sign rashis (`BirthChart.MOVABLE_RASHIS`, `FIXED_RASHIS`). **Nala** Yoga (negative) applies when all seven occupy only **dual** rashis (`MIXED_RASHIS`). At most one of the three can apply; Rahu/Ketu ignored.
+- **Gada**, **Sanaha**, **Vibhuka**, and **Dhuriya** Yoga place all seven classical grahas only on two **consecutive kendras** (1–4, 4–7, 7–10, or 10–1); each of those two houses must hold at least one graha; Rahu/Ketu are ignored.
+- **Dur** Yoga (negative): the **lord of the 10th** from Lagna is in the **6th, 8th, or 12th** from Lagna (`DUSTHANA_OFFSETS` from `FIRST_HOUSE`). **Daridra** Yoga: the **lord of the 11th** in the same dusthanas.
+- **Sakata Nabhasa** Yoga (negative) confines all seven grahas to **1 and 7**; **Vihaga** Yoga (positive) to **4 and 10** — opposite kendra pairs; each house in the pair must hold at least one graha. **Sakata Nabhasa** is not the same rule as **Sakata** Yoga (`SakataYoga.java`, Jupiter–Moon dusthana).
+- **Vajra** and **Yava** Yoga (Nabhasa): **Vajra** — natural benefics in **1 and 7** (each house at least one), natural malefics in **4 and 10** (each at least one). **Yava** — the swap (malefics in 1 and 7, benefics in 4 and 10). Uses the same natural benefic/malefic lists as `MatsyaYoga` / `BirthChart` (Moon neutral; Rahu/Ketu not in those lists).
+- **Srik** Yoga: **Mercury**, **Venus**, and **Jupiter** each in a **Kendra** from Lagna (`BirthChart.KENDRA_HOUSES`). **Sarpa** Yoga (negative): **Sun**, **Mars**, and **Saturn** each in a Kendra.
+- **Kamala** Yoga: all seven classical grahas in the four **kendras** (1, 4, 7, 10) from Lagna only, with each kendra holding at least one graha; Rahu/Ketu ignored.
+- **Samudra** Yoga: all seven classical grahas in the six **even** houses (2, 4, 6, 8, 10, 12) from Lagna only, with each of those houses holding at least one graha; Rahu/Ketu ignored.
+- **Vallaki** Yoga: the seven classical grahas each fall in a **different** whole-sign rashi (seven distinct signs); Rahu/Ketu ignored for this count.
+- **Damni** Yoga: **exactly six** distinct whole-sign rashis among the seven grahas (one sign shared by two grahas); Rahu/Ketu ignored.
+- **Pasa** Yoga: **exactly five** distinct whole-sign rashis among the seven grahas (two overlaps, e.g. two pairs or a triple plus a pair); Rahu/Ketu ignored.
+- **Kedara** Yoga: **exactly four** distinct whole-sign rashis among the seven grahas; Rahu/Ketu ignored.
+- **Sula**, **Yuga**, and **Gola** Yoga (negative Nabhasa): **exactly three**, **two**, or **one** distinct whole-sign rashi respectively among the seven classical grahas; Rahu/Ketu ignored.
 - **Yupa**, **Ishu**, **Sakti**, and **Danda** Yoga pack all seven classical grahas into four consecutive whole-sign houses starting from the **1st**, **4th**, **7th**, or **10th** respectively; **Danda** wraps (10–12 and 1). Each of the four houses must hold at least one of the seven; Rahu/Ketu are ignored.
 - **Kulvardhana** Yoga: all seven grahas each fall in one of the houses that are the **5th from Lagna**, **5th from the Sun**, or **5th from the Moon**.
 - **Thrilochana** Yoga: Sun, Moon, and Mars on the three corners of one **trikona** set (1-5-9, 2-6-10, 3-7-11, or 4-8-12), in three different houses.
+- **Sringhatka** Yoga: all seven classical grahas in **1, 5, and 9** from Lagna only, with each of those three houses holding at least one graha; Rahu/Ketu ignored.
+- **Hala** Yoga: the same seven-graha rule for **any one** of the triads **2–6–10**, **3–7–11**, or **4–8–12** from Lagna (each house in the chosen triad must hold at least one graha); Rahu/Ketu ignored.
+- **Harsha**, **Sarala**, and **Vimala** Yoga (Viparita Raja): **Harsha** — **lord of the 6th** from Lagna in the **8th or 12th** from Lagna (not the 6th). **Sarala** — **lord of the 8th** in the **6th or 12th** from Lagna. **Vimala** — **lord of the 12th** in the **6th or 8th** from Lagna.
+- **Sareera Soukhya** Yoga: **at least one** of the **Lagna lord**, **Jupiter**, or **Venus** occupies a **kendra** from Lagna (`BirthChart.KENDRA_HOUSES`).
 - **Gaja**, **Kala Nidhi**, **Makuta**, **Ravi**, **Vidyut**, **Brahma** (standalone), **Jaya**, **Go**, **Indra**, **Siva**, and related rules use `getLordOfHouse`, `planetAspectsHouse`, `getExaltationRashi`, `getDebilitationRashi`, and/or `getMoolatrikonaRashi` as documented in each class.
 - **Hari Hara Brahma** Yoga is true if **any** of **Hari**, **Hara**, or **Brahma** sub-conditions holds (see `HariHaraBrahmaYoga.java`); the separate **Brahma Yoga** class implements a different classical rule.
 - **Matsya** Yoga uses **natural** malefic/benefic lists for houses 1, 4, 5, 8, and 9.
@@ -163,23 +210,33 @@ Astrology-YogaCalculator/
             |-- ChapaYoga.java
             |-- ChandraMangalaYoga.java
             |-- ChatussagaraYoga.java
+            |-- DamniYoga.java
             |-- DandaYoga.java
             |-- DevendraYoga.java
             |-- DhanaMalikaYoga.java
             |-- DhurdhuraYoga.java
+            |-- DhuriyaYoga.java
+            |-- DaridraYoga.java
+            |-- DurYoga.java
+            |-- GadaYoga.java
             |-- GajaYoga.java
             |-- GajKesariYoga.java
             |-- GarudaYoga.java
             |-- GauriYoga.java
             |-- GoYoga.java
+            |-- GolaYoga.java
+            |-- HalaYoga.java
             |-- HamsaYoga.java
+            |-- HarshaYoga.java
             |-- HariHaraBrahmaYoga.java
             |-- IndraYoga.java
             |-- IshuYoga.java
             |-- JayaYoga.java
             |-- KalatraMalikaYoga.java
             |-- KalaNidhiYoga.java
+            |-- KamalaYoga.java
             |-- KarmaMalikaYoga.java
+            |-- KedaraYoga.java
             |-- KemaDrumaYoga.java
             |-- KulvardhanaYoga.java
             |-- KusumaYoga.java
@@ -191,33 +248,53 @@ Astrology-YogaCalculator/
             |-- MakutaYoga.java
             |-- MalikaYogaChecker.java
             |-- MatsyaYoga.java
+            |-- MusalaYoga.java
+            |-- NalaYoga.java
             |-- ObhayachariYoga.java
             |-- ParijathaYoga.java
             |-- ParvataYoga.java
+            |-- PasaYoga.java
             |-- PushkalaYoga.java
             |-- PutraMalikaYoga.java
             |-- RajalakshanaYoga.java
+            |-- RajjuYoga.java
             |-- RandhraMalikaYoga.java
             |-- RaviYoga.java
             |-- RuchakaYoga.java
+            |-- SakataNabhasaYoga.java
             |-- SakataYoga.java
             |-- SaktiYoga.java
-            |-- SatruMalikaYoga.java
+            |-- SamudraYoga.java
+            |-- SanahaYoga.java
+            |-- SareeraSoukhyaYoga.java
+            |-- SaralaYoga.java
+            |-- SarpaYoga.java
             |-- SasaYoga.java
+            |-- SatruMalikaYoga.java
             |-- SivaYoga.java
             |-- SreenathaYoga.java
+            |-- SrikYoga.java
+            |-- SringhatkaYoga.java
+            |-- SulaYoga.java
             |-- SukhaMalikaYoga.java
             |-- SunaphaYoga.java
             |-- ThrilochanaYoga.java
+            |-- VajraYoga.java
+            |-- VallakiYoga.java
             |-- VanchanaChoraBheethiYoga.java
             |-- VasiYoga.java
             |-- VasumathiYoga.java
             |-- VesiYoga.java
+            |-- VihagaYoga.java
+            |-- VibhukaYoga.java
             |-- VikramaMalikaYoga.java
             |-- VidyutYoga.java
+            |-- VimalaYoga.java
             |-- VishnuYoga.java
             |-- VrayaMalikaYoga.java
+            |-- YavaYoga.java
             |-- Yoga.java
+            |-- YugaYoga.java
             `-- YupaYoga.java
 ```
 
@@ -246,7 +323,7 @@ Astrology-YogaCalculator/
 - own-house placements
 - benefic and malefic groupings
 - **`KENDRA_HOUSES`** — global list of the four angular houses (1st, 4th, 7th, 10th) for reuse in yoga rules
-- **`DUSTHANA_OFFSETS`** — global list of dusthana house offsets (6, 8, 12) for reuse (e.g. Sakata Yoga)
+- **`DUSTHANA_OFFSETS`** — global list of dusthana house offsets (6, 8, 12) for reuse (e.g. Sakata Yoga, Dur Yoga, Daridra Yoga)
 - **`MOVABLE_RASHIS`**, **`FIXED_RASHIS`**, and **`MIXED_RASHIS`** (dual signs) — used e.g. by Amsaavtara and Devendra Yoga
 - **`planetAspectsHouse(planet, house)`** — sign-based graha drishti using internal aspect offsets (e.g. Gaja Yoga, Kala Nidhi Yoga)
 - **`getExaltationRashi`**, **`getDebilitationRashi`**, **`getMoolatrikonaRashi`** — dignity sign lookups used by several yogas (e.g. Jaya, Go)
